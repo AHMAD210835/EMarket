@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EMarket</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EMarket.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom shadow-sm mb-3">
+            <div class="container-fluid px-4">
+
+                
+                <a class="navbar-brand d-flex align-items-center gap-2 ms-5" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/logo.png" alt="EMarket Logo" style="height: 40px;" />
+                </a>
+
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+               
+                <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+                    <ul class="navbar-nav gap-3">
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Store" asp-action="ByCategory" asp-route-category="Phones">Phones</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Store" asp-action="ByCategory" asp-route-category="Laptops">Laptops</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Store" asp-action="ByCategory" asp-route-category="Accessories">Accessories</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Store" asp-action="ByCategory" asp-route-category="TVs">TV</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Store" asp-action="Index">Store</a></li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link  " asp-controller="Products" asp-action="Index">Yönetim Paneli</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                
+                <div class="d-flex align-items-center gap-3 me-5">
+
+                    @{
+                        var cartCount = Context.Session.GetInt32("CartCount") ?? 0;
+                    }
+
+                    <a class="btn text-secondary  position-relative bag" asp-controller="Cart" asp-action="Index">
+                        <i class="bi bi-bag"></i>
+                        @if (cartCount > 0)
+                        {
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+                                @cartCount
+                            </span>
+                        }
+                    </a>
+
+                    @if (User.Identity?.IsAuthenticated ?? false)
+                    {
+                        <form method="post" asp-area="Identity" asp-page="/Account/Logout" class="mb-0">
+                            <button type="submit" class="navbtn btn btn-outline-secondary  btn-sm">Sign Out</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form method="post" asp-area="Identity" asp-page="/Account/Login" class="mb-0">
+                            <button type="submit" class="navbtn btn btn-outline-secondary  btn-sm">Sign In</button>            
+                        </form>
+                        <form method="post" asp-area="Identity" asp-page="/Account/Register" class="mb-0">
+                            <button type="submit" class="navbtn btn btn-outline-secondary  btn-sm">Register</button>
+                        </form>
+                        
+                    }
+                </div>
+            </div>
+        </nav>
+
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+ 
+    <div class="text-center my-5">
+        <h3 class="fw-bold mb-4">Looking for something else?</h3>
+        <form class="d-flex justify-content-center">
+            <div class="input-group" style="max-width: 500px;">
+                <span class="input-group-text bg-white border-end-0">
+                    <i class="bi bi-search"></i>
+                </span>
+                <input type="text" class="form-control border-start-0 rounded-5 " placeholder="Search by hashtag..." />
+            </div>
+        </form>
+    </div>
+
+    <footer class="bg-light text-dark pt-5 mt-5 border-top">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+
+                
+                <div class="col">
+                    <h6 class="fw-bold mb-3">Products</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="/Store/Category?category=Phones" class="text-decoration-none text-secondary">Phones</a></li>
+                        <li><a href="/Store/ByCategory?category=Laptops" class="text-decoration-none text-secondary ">Laptops</a></li>
+                        <li><a href="/Store/ByCategory?category=Accessories" class="text-decoration-none text-secondary">Accessories</a></li>
+                        <li><a href="/Store/ByCategory?category=TVs" class="text-decoration-none text-secondary">TVs</a></li>
+                    </ul>
+                </div>
+
+               
+                <div class="col">
+                    <h6 class="fw-bold mb-3">Shopping</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-decoration-none text-secondary">Deals</a></li>
+                        <li><a href="#" class="text-decoration-none text-secondary">Discounts</a></li>
+                        <li><a href="#" class="text-decoration-none text-secondary">My Cart</a></li>
+                        <li><a href="#" class="text-decoration-none text-secondary">Store</a></li>
+                    </ul>
+                </div>
+
+               
+                <div class="col">
+                    <h6 class="fw-bold mb-3">Support</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-decoration-none text-secondary">Contact Us</a></li>
+                        <li><a href="#" class="text-decoration-none text-secondary">FAQ</a></li>
+                        <li><a href="#" class="text-decoration-none text-secondary">Warranty</a></li>
+                        <li><a href="#" class="text-decoration-none text-secondary">Track Order</a></li>
+                    </ul>
+                </div>
+
+               
+                <div class="col">
+                    <h6 class="fw-bold mb-3">About Us</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-decoration-none text-secondary">About</a></li>
+                        <li><a href="/Home/Privacy" class="text-decoration-none text-secondary">Privacy Policy</a></li>
+                        <li><a href="#" class="text-decoration-none text-secondary">Terms of Use</a></li>
+                        <li><a href="#" class="text-decoration-none text-secondary">Partnership</a></li>
+                    </ul>
+                </div>
+            </div>
+
+           
+           
+
+            <hr class="mt-4" />
+            <div class="d-flex justify-content-between">
+                    <div class="d-flex text-center text-muted py-3 small">
+                        &copy; 2025 EMarket. All rights reserved.
+                    </div>
+                    <div class="d-flex  align-items-center gap-3">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" height="20" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="MasterCard" height="20" width="50" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" height="20" />
+                    </div>
+            </div>
+        </div>  
+</footer>
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

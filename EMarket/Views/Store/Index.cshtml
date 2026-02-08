@@ -1,0 +1,27 @@
+﻿@model IEnumerable<EMarket.ViewModels.CategoryViewModel>
+
+@{
+    ViewData["Title"] = "Mağaza";
+}
+
+<h2 class="text-center my-4 mb-5">Categories</h2>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    @foreach (var category in Model)
+    {
+        <div class="col">
+            <div class="card category-card h-100 shadow-sm">
+                <a asp-action="Category" asp-route-category="@category.CategoryName" class="text-decoration-none text-dark">
+                    <img src="@category.ImageUrl"
+                         class="card-img-top category-image p-3"
+                         style="height: 200px; object-fit: contain;"
+                         alt="@category.CategoryName" />
+
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold category-title">@category.CategoryName</h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+</div>

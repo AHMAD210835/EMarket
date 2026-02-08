@@ -1,0 +1,219 @@
+﻿html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.category-card {
+    transition: all 0.3s ease-in-out;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+    .category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        background-color: #f1f1f1;
+    }
+
+.category-image {
+    transition: transform 0.3s ease-in-out;
+    background-color: #f8f9fa;
+}
+
+.category-card:hover .category-image {
+    transform: scale(1.05);
+}
+
+.category-title {
+    transition: color 0.3s ease;
+}
+
+.category-card:hover .category-title {
+    color: #0d6efd;
+}
+
+.herovedio {
+    border-radius:25px;
+    cursor:pointer;
+    outline:none;
+}
+.herobtn:hover {
+    background: #2f2f2f;
+    color: #fff;
+    transition: 0.5s ease;
+}
+
+.product-img {
+    height: 250px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+}
+.product-img:hover {
+        transform: scale(1.05);
+}
+
+.navbtn:hover{
+    background:#2f2f2f;
+    color:#fff;
+    
+}
+.hero-section {
+    position: relative;
+    height: 600px;
+    background-image: url('/images/banner.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    padding-left: 5%;
+    overflow: hidden;
+    
+}
+
+.overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, white 0%, transparent 5%, transparent 97%, white 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+}
+.banner-btn:hover {
+    background: none;
+    color: black;
+    transition: 0.5s ease;
+}
+
+
+.card {
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    padding: 1rem 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+
+
+.card-img-top {
+    height: 260px;
+    width: auto;
+    object-fit: contain;
+    margin: 0 auto;
+    transition: transform 0.3s ease-in-out;
+}
+.card-img {
+    transition: 0.5s ease;
+}
+.card-img:hover {
+    transform: scale(1.05);
+}
+
+
+.card-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-top: 1rem;
+}
+
+.card-text {
+    color: #555;
+    font-size: 0.95rem;
+    margin: 0.5rem 0;
+}
+
+.card-price {
+    font-weight: bold;
+    color: #000;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+
+.card-footer {
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+
+.btn-details {
+    background-color: #212529;
+    color: white;
+    border-radius: 5px;
+    padding: 0.4rem 1rem;
+    border: none;
+    transition: all 0.5s ease;
+}
+
+    .btn-details:hover {
+        background-color: white;
+        color: #212529;
+        border: 1px solid #212529;
+    }
+
+
+.btn-cart {
+    background-color: white;
+    color: #0f0f0f;
+    border: 1px solid #0a0a0a;
+    border-radius: 5px;
+    padding: 0.4rem 1rem;
+    transition: all 0.5s ease;
+}
+
+    .btn-cart:hover {
+        background-color: #212529;
+        color: white;
+    }
+
+
+.product-title {
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-desc {
+    max-height: 3em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+

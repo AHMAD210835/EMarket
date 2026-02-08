@@ -1,0 +1,30 @@
+﻿@model List<EMarket.Models.CartItem>
+
+<h2>🧾 Sipariş Özeti</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ürün</th>
+            <th>Adet</th>
+            <th>Birim Fiyat</th>
+            <th>Toplam</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price ₺</td>
+                <td>@(item.Quantity* item.Price) ₺</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form asp-action="Confirm" method="post">
+    <button type="submit" class="btn btn-success">✅ Siparişi Tamamla</button>
+</form>
+
